@@ -72,7 +72,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li>Model 2: Transmission and weight</li>
 <li>Model 3: Stepwise algorithm</li>
 </ul>
-<p>Results show that <strong>Model 3</strong> (<code>lm(formula = mpg ~ cyl + disp + wt + am, data = mtcars)</code>) is the most optimal. <strong>Model 3</strong> captures 86.588% of the the total variance (84.0088%, adjusted). From the coefficient values, a <code>1000-lb</code> increase in an autombile’s weight would result to a -2.4968 change in the <code>mpg</code>. With respect to the transmission, automatic transmission has 1.8092 less mpg than manual. For <code>hp</code>, on the other hand, an increase would result to a -0.0321 (decrease) in <code>mpg</code>. Finally, in general, more cylinders (<code>cyl</code>) would decrease the automobile’s <code>mpg</code>. Analysis of residuals is also presented in this report to validate the use of the models. The <em>Residuals vs Fitted</em> plot indicates a decent fit for <strong>Model 3</strong>; while, the <strong>Normal Q-Q plot</strong> <em>suggests</em> consistency with normality.</p>
+<p>Results show that <strong>Model 3</strong> (<code>lm(formula = mpg ~ cyl + hp + wt + am, data = mtcars)</code>) is the most optimal. <strong>Model 3</strong> captures 86.588% of the the total variance (84.0088%, adjusted). From the coefficient values, a <code>1000-lb</code> increase in an autombile’s weight would result to a -2.4968 change in the <code>mpg</code>. With respect to the transmission, automatic transmission has 1.8092 less mpg than manual. For <code>hp</code>, on the other hand, an increase would result to a -0.0321 (decrease) in <code>mpg</code>. Finally, in general, more cylinders (<code>cyl</code>) would decrease the automobile’s <code>mpg</code>. Analysis of residuals is also presented in this report to validate the use of the models. The <em>Residuals vs Fitted</em> and the <em>Scale-Location</em> plots indicate decent fits for <strong>Model 3</strong> (fairly random patterns are observed); while the <strong>Normal Q-Q plot</strong> <em>suggests</em> consistency with normality.</p>
 <div id="exploratory-data-analysis" class="section level2">
 <h2>Exploratory Data Analysis</h2>
 <p>First we look at the different relationships of each of the pair of variables in the dataset by plotting the pairs (Figure A1, <em>Appendix</em>). We also mark those <code>x~y</code> pairs that fit (<code>r^2 &gt; 0.700</code>) into a linear model. In the plot, we have excluded <em>cyl</em>, <em>vs</em>, <em>am</em>, <em>gear</em>, and <em>carb</em> as they are categorical variables— we plot them independently (Figure A2, <em>Appendix</em>). The plots give us an idea about the correlations of the variables (<em>Note: categorical variables are considered numerical</em>). To quantify the correlations, we implement the <code>cor</code> function with <code>wt</code> (-0.8677), <code>cyl</code> (-0.8522), <code>disp</code> (-0.8476), and <code>hp</code> (-0.7762) showing the highest correlation values.</p>
@@ -92,7 +92,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </ul>
 <div id="comparing-the-models" class="section level3">
 <h3>Comparing the Models</h3>
-<p>Computing an anova for the three models shows that <strong>Model 3</strong> is the most optimal model compared to <strong>Model 2</strong> and <strong>Model 1</strong>.</p>
+<p>Computing an anova for the three models shows that <strong>Model 3</strong> is the most optimal when compared against <strong>Model 2</strong> and <strong>Model 1</strong>.</p>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: mpg ~ am
@@ -104,7 +104,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 ## 3     26 151  3       127  7.3   0.001 ** 
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-<p><strong>Model 3</strong> captures 86.588% of the the total variance and 84.0088% (adjusted). From the coefficients, we can see that a <code>1000-lb</code> increase in an autombile’s weight would result to a -2.4968 change to the <code>mpg</code>. With respect to the transmission, automatic transmission has 1.8092 less mpg than manual. In terms of <code>hp</code>, an increase would result to a -0.0321 (decrease) in <code>mpg</code>. Finally, in general, more cylinders (<code>cyl</code>) would decrease the automobile’s <code>mpg</code>.</p>
+<p><strong>Model 3</strong> captures 86.588% of the the total variance (84.0088%, adjusted). From the coefficients, we can see that a <code>1000-lb</code> increase in an autombile’s weight would result to a -2.4968 change on the <code>mpg</code>. With respect to the transmission, automatic transmission has 1.8092 less mpg than manual. In terms of <code>hp</code>, an increase would result to a -0.0321 (decrease) on <code>mpg</code>. Finally, in general, more cylinders (<code>cyl</code>) would decrease the automobile’s <code>mpg</code>.</p>
 <pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
 ## (Intercept) 33.70832    2.60489 12.9404 7.733e-13
 ## cyl6        -3.03134    1.40728 -2.1540 4.068e-02
@@ -112,7 +112,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 ## hp          -0.03211    0.01369 -2.3450 2.693e-02
 ## wt          -2.49683    0.88559 -2.8194 9.081e-03
 ## am1          1.80921    1.39630  1.2957 2.065e-01</code></pre>
-<p>In the Appendix section (Figure A3), we analyze and plot the residuals against the fitted and leverage values for <strong>Model 3</strong>. We also provide the Normal Q-Q plot and Scale-Location plots. The <em>Residuals vs Fitted</em> plot in Figure A3 shows a fairly random pattern, which indicates a decent fit for <strong>Model 3</strong>. Moreover, the Q-Q plot looks practicably linear (suggests consistency with normality), but the upper right head suggests some skewness.</p>
+<p>In the Appendix section (Figure A3), we analyze and plot the residuals against the fitted and leverage values for <strong>Model 3</strong>. We also provide the Normal Q-Q plot and Scale-Location plots. The <em>Residuals vs Fitted</em> plot in Figure A3 shows a fairly random pattern, which indicates a decent fit for <strong>Model 3</strong>. The same can be said for the <em>Scale-Location</em> plot. Moreover, the Q-Q plot looks practicably linear (suggests consistency with normality), but the head and tail suggest relative skewness.</p>
 </div>
 </div>
 <div id="appendix" class="section level2">

@@ -33,7 +33,7 @@ We explore the `mtcars` data and determine the effects of various factors to the
 - Model 2: Transmission and weight
 - Model 3: Stepwise algorithm
 
-Results show that **Model 3** (`lm(formula = mpg ~ cyl + disp + wt + am, data = mtcars)`) is the most optimal. **Model 3** captures `r summ3$r.squared*100`% of the the total variance  (`r summ3$adj.r.squared*100`%, adjusted). From the coefficient values, a `1000-lb` increase in an autombile's weight would result to a `r summ3$coefficients[5]` change in the `mpg`. With respect to the transmission, automatic transmission has `r summ3$coefficients[6]` less mpg than manual. For `hp`, on the other hand, an increase would result to a `r summ3$coefficients[4]` (decrease) in `mpg`. Finally, in general, more cylinders (`cyl`) would decrease the automobile's `mpg`. Analysis of residuals is also presented in this report to validate the use of the models. The *Residuals vs Fitted* plot indicates a decent fit for **Model 3**; while, the **Normal Q-Q plot** *suggests* consistency with normality.
+Results show that **Model 3** (`lm(formula = mpg ~ cyl + hp + wt + am, data = mtcars)`) is the most optimal. **Model 3** captures `r summ3$r.squared*100`% of the the total variance  (`r summ3$adj.r.squared*100`%, adjusted). From the coefficient values, a `1000-lb` increase in an autombile's weight would result to a `r summ3$coefficients[5]` change in the `mpg`. With respect to the transmission, automatic transmission has `r summ3$coefficients[6]` less mpg than manual. For `hp`, on the other hand, an increase would result to a `r summ3$coefficients[4]` (decrease) in `mpg`. Finally, in general, more cylinders (`cyl`) would decrease the automobile's `mpg`. Analysis of residuals is also presented in this report to validate the use of the models. The *Residuals vs Fitted* and the *Scale-Location* plots indicate decent fits for **Model 3** (fairly random patterns are observed); while the **Normal Q-Q plot** *suggests* consistency with normality.
 
 
 ##Exploratory Data Analysis
@@ -90,20 +90,20 @@ r3<-summary(model3)$r.squared
 summ3 <- summary(model3)
 ```
 
-Computing an anova for the three models shows that **Model 3** is the most optimal model compared to **Model 2** and **Model 1**. 
+Computing an anova for the three models shows that **Model 3** is the most optimal when compared against **Model 2** and **Model 1**. 
 
 ```{r, echo=FALSE}
 an<-anova(model1, model2, model3)
 print(an)
 ```
 
-**Model 3** captures `r summ3$r.squared*100`% of the the total variance and `r summ3$adj.r.squared*100`% (adjusted). From the coefficients, we can see that a `1000-lb` increase in an autombile's weight would result to a `r summ3$coefficients[5]` change to the `mpg`. With respect to the transmission, automatic transmission has `r summ3$coefficients[6]` less mpg than manual. In terms of `hp`, an increase would  result to a `r summ3$coefficients[4]` (decrease) in `mpg`. Finally, in general, more cylinders (`cyl`) would decrease the automobile's `mpg`.
+**Model 3** captures `r summ3$r.squared*100`% of the the total variance (`r summ3$adj.r.squared*100`%, adjusted). From the coefficients, we can see that a `1000-lb` increase in an autombile's weight would result to a `r summ3$coefficients[5]` change on the `mpg`. With respect to the transmission, automatic transmission has `r summ3$coefficients[6]` less mpg than manual. In terms of `hp`, an increase would  result to a `r summ3$coefficients[4]` (decrease) on `mpg`. Finally, in general, more cylinders (`cyl`) would decrease the automobile's `mpg`.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 summ3$coefficients
 ```
 
-In the Appendix section (Figure A3), we analyze and plot the residuals against the fitted and leverage values for **Model 3**. We also provide the Normal Q-Q plot and Scale-Location plots. The *Residuals vs Fitted* plot in Figure A3 shows a fairly random pattern, which indicates a decent fit for **Model 3**. Moreover, the Q-Q plot looks practicably linear (suggests consistency with normality), but the upper right head suggests some skewness. 
+In the Appendix section (Figure A3), we analyze and plot the residuals against the fitted and leverage values for **Model 3**. We also provide the Normal Q-Q plot and Scale-Location plots. The *Residuals vs Fitted* plot in Figure A3 shows a fairly random pattern, which indicates a decent fit for **Model 3**. The same can be said for the *Scale-Location* plot. Moreover, the Q-Q plot looks practicably linear (suggests consistency with normality), but the head and tail suggest relative skewness. 
 
 
 ##Appendix
