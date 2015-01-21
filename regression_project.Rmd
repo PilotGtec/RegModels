@@ -2,7 +2,7 @@
 title: "Assessing Factors that Affect mpg"
 author: "PilotGtec EFTL"
 date: "21 January 2015"
-output: html_document
+output: pdf_document
 ---
 
 Analyze mtcars data. The dataset has 32 observations on 11 variables, namely `mpg` (miles per gallon), `cyl`, `disp`, `hp`, `drat`, `wt`, `qsec`, `vs`, `am`, `gear`, and `carb`. Details on the variable descriptions can be found [here][1]. In particular, the automobile industry is interested in the following:
@@ -33,7 +33,8 @@ We explore the `mtcars` data and determine the effects of various factors to the
 - Model 2: Transmission and weight
 - Model 3: Stepwise algorithm
 
-Results show that **Model 3** (`lm(formula = mpg ~ cyl + disp + wt + am, data = mtcars)`) is the most optimal. **Model 3** captures `r summ3$r.squared*100`% of the the total variance  (`r summ3$adj.r.squared*100`%, adjusted). From the coefficient values, a `1000-lb` increase in an autombile's weight would result to a `r summ3$coefficients[5]` change in the `mpg`. With respect to the transmission, automatic transmission has `r summ3$coefficients[6]` less mpg than manual. For `hp`, on the other hand, an increase would result to a `r summ3$coefficients[4]` (decrease) in `mpg`. Finally, in general, more cylinders (`cyl`) would decrease the automobile's `mpg`. Analysis of residuals is also presented in this report.
+Results show that **Model 3** (`lm(formula = mpg ~ cyl + disp + wt + am, data = mtcars)`) is the most optimal. **Model 3** captures `r summ3$r.squared*100`% of the the total variance  (`r summ3$adj.r.squared*100`%, adjusted). From the coefficient values, a `1000-lb` increase in an autombile's weight would result to a `r summ3$coefficients[5]` change in the `mpg`. With respect to the transmission, automatic transmission has `r summ3$coefficients[6]` less mpg than manual. For `hp`, on the other hand, an increase would result to a `r summ3$coefficients[4]` (decrease) in `mpg`. Finally, in general, more cylinders (`cyl`) would decrease the automobile's `mpg`. Analysis of residuals is also presented in this report to validate the use of the models. The *Residuals vs Fitted* plot indicates a decent fit for **Model 3**; while, the **Normal Q-Q plot** *suggests* consistency with normality.
+
 
 ##Exploratory Data Analysis
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -102,7 +103,7 @@ print(an)
 summ3$coefficients
 ```
 
-In the Appendix section (Figure A3), we analyze and plot the residuals against the fitted and leverage values for **Model 3**. We also provide the Normal Q-Q plot and Scale-Location plots. 
+In the Appendix section (Figure A3), we analyze and plot the residuals against the fitted and leverage values for **Model 3**. We also provide the Normal Q-Q plot and Scale-Location plots. The *Residuals vs Fitted* plot in Figure A3 shows a fairly random pattern, which indicates a decent fit for **Model 3**. Moreover, the Q-Q plot looks practicably linear (suggests consistency with normality), but the upper right head suggests some skewness. 
 
 
 ##Appendix
